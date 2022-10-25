@@ -121,18 +121,19 @@ class frmMain(QMainWindow):
 
     def onClickNext(self):  # Кнопка Вперёд
 
-        if not os.path.exists(self.inkscape):
-            msg = QMessageBox()
-            msg.setIcon(QMessageBox.Critical)
-            msg.setText("Ошибка")
-            msg_text = 'Не установлен Inkscape\n'
-            msg_text += 'Приложение использует для преобразования SVG файлов в PDF формат внешний редактор - Inkscape\n'
-            msg_text += '(https://inkscape.org)\n'
-            msg_text += '\n'
-            msg.setInformativeText(msg_text)
-            msg.setWindowTitle("Ошибка")
-            msg.exec_()
-            return
+        if not isLinux:
+            if not os.path.exists(self.inkscape):
+                msg = QMessageBox()
+                msg.setIcon(QMessageBox.Critical)
+                msg.setText("Ошибка")
+                msg_text = 'Не установлен Inkscape\n'
+                msg_text += 'Приложение использует для преобразования SVG файлов в PDF формат внешний редактор - Inkscape\n'
+                msg_text += '(https://inkscape.org)\n'
+                msg_text += '\n'
+                msg.setInformativeText(msg_text)
+                msg.setWindowTitle("Ошибка")
+                msg.exec_()
+                return
 
 
         self.current_step += 1  # Переходим к следуюему шагу мастера
